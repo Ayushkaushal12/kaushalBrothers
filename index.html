@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hope Foundation - Make a Difference Today</title>
+    <!-- <link rel="stylesheet" href="./src/output.css"> -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#4F46E5", secondary: "#10B981" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "4px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "4px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+      .qr-code-container {
+      transition: all 0.3s ease;
+      }
+      .testimonial-slider {
+      transition: transform 0.5s ease;
+      }
+      /* Button styles */
+      button {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      }
+      button:active {
+      transform: scale(0.95);
+      }
+      .ripple {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      transform: scale(0);
+      animation: ripple 0.6s linear;
+      pointer-events: none;
+      }
+      @keyframes ripple {
+      to {
+      transform: scale(4);
+      opacity: 0;
+      }
+      }
+      /* Active state */
+      button.active {
+      opacity: 0.8;
+      }
+      /* Hover state */
+      button:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+      }
+      @keyframes fadeInSlow {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      @keyframes slideUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .animate-fadeIn {
+        animation: fadeIn 1.2s ease-out forwards;
+      }
+      .animate-fadeInSlow {
+    animation: fadeInSlow 2s ease-out forwards;
+      }
+      .animate-slideUp {
+    animation: slideUp 1s ease-out forwards;
+      }
+  
+    </style>
+  </head>
+  <body class="bg-white min-h-screen">
+    <header class="fixed w-full bg-white shadow-sm z-50">
+      <nav class="bg-blue-800 shadow-lg fixed w-full z-50 font-2xl p-4">
+        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+          <!-- Logo -->
+          <div class="flex items-center">
+            <a href="#" class="text-3xl font-['Pacifico'] text-white flex items-center space-x-2">
+              <span class="hover:text-red-600 transition-all hidden md:inline">Kaushal & Brothers</span>
+            </a>
+          </div>
+      
+          <!-- Desktop Menu -->
+          <div class="hidden md:flex items-center space-x-8 text-white font-xl">
+            <a href="#" class="hover:text-red-500  transition-all">Home</a>
+            <a href="#about" class="hover:text-red-500  transition-all">About Us</a>
+            <a href="#contact" class="hover:text-red-500  transition-all">Contact</a>
+          </div>
+      
+          <!-- Social Icons & Mobile Menu Button -->
+          <div class="flex items-center space-x-4">
+            <div class="hidden md:flex space-x-4">
+              <a href="https://www.facebook.com/profile.php?id=61574552523050&rdid=qgFmBD8rXzgR6nZK&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1BujdZnC4g%2F#" class="text-white hover:text-yellow-300 transition-all">
+                <i class="ri-facebook-fill ri-lg"></i>
+              </a>
+              <a href="#" class="text-white hover:text-green-500 transition-all">
+                <i class="ri-twitter-fill ri-lg"></i>
+              </a>
+              <a href="https://www.instagram.com/__chaudharytraders__123?igsh=eHpieXM2a3hmdDVv" class="text-white hover:text-pink-500 transition-all">
+                <i class="ri-instagram-fill ri-lg"></i>
+              </a>
+            </div>
+      
+            <!-- Mobile Menu Button -->
+            <button id="mobileMenuBtn" class="md:hidden text-white">
+              <i class="ri-menu-line ri-xl"></i>
+            </button>
+          </div>
+        </div>
+      
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-indigo-700 text-white px-6 py-4 font-2xl">
+          <a href="#" class="block py-2 hover:text-red-500 ">Home</a>
+          <a href="#about" class="block py-2 hover:text-red-500 ">About Us</a>
+          <a href="#photos" class="block py-2 hover:text-red-500 ">Gallery</a>
+          <a href="#contact" class="block py-2 hover:text-red-500 ">Contact</a>
+          <div class="flex justify-center space-x-4 mt-4">
+            <a href="https://www.facebook.com/helpinghandsngo/" class="text-white hover:text-red-900 transition-all">
+              <i class="ri-facebook-fill ri-lg"></i>
+            </a>
+            <a href="#" class="text-white hover:text-green-500 transition-all">
+              <i class="ri-twitter-fill ri-lg"></i>
+            </a>
+            <a href="#" class="text-white hover:text-red-500 transition-all">
+              <i class="ri-instagram-fill ri-lg"></i>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="pt-16">
+      <section class="relative h-[600px] overflow-hidden">
+        <!-- 🔽 Video Background -->
+        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0">
+          <source src="video1.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      
+        <!-- 🔽 Overlay for darkness -->
+        <div class="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
+      
+        <!-- 🔽 Content on top -->
+        <div class="container mx-auto px-6 h-full flex items-center relative z-20">
+          <div class="max-w-2xl text-white text-center mx-auto">
+            <h1 class="text-5xl font-bold mb-4 animate-fadeIn hover:text-yellow-500 hover:shadow-lg transition-all duration-500">
+              "Pure, Fresh, and Always Ready – Hydration Delivered to Your Doorstep!"
+            </h1>
+            <p class="text-xl mb-8 animate-fadeIn delay-200 hover:text-blue-400 transition-all duration-500">
+              "Crystal-Clear Hydration – From Our Source to Your Sip!"
+            </p>
+          </div>
+        </div>
+      </section>
+      
+      <section id="about" class="py-20 bg-blue-200">
+        <div class="container mx-auto px-6">
+          <div class="grid md:grid-cols-2 gap-12 items-center">
+            <!-- Image Section -->
+            <div class="relative h-[400px] rounded-lg overflow-hidden group">
+              <img
+                src="water1.jpg"
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                alt="Purified Water"
+              />
+            </div>
+      
+            <!-- Content Section -->
+            <div class="opacity-0 animate-fadeIn">
+              <h2 class="text-3xl font-bold mb-6 text-blue-1000 transition duration-300 hover:text-blue-950">
+                Purity in Every Drop – Our Commitment to Clean Water
+              </h2>
+              <p class="text-2xl text-black mb-6 leading-relaxed transition duration-300 hover:text-gray-950">
+                At Kaushal Neer, we ensure every drop of water is pure, safe, and refreshing. 
+                Using advanced filtration and purification technologies, we remove impurities, 
+                bacteria, and contaminants, delivering only the freshest and cleanest water to 
+                your home and business.  
+                <br /><br />
+                Our mission is to provide hydration that promotes health, sustainability, 
+                and convenience.  Join us in making clean water accessible for everyone.
+              </p>
+      
+              <!-- Button with hover effects -->
+              <a
+                href="#"
+                class="inline-block bg-blue-950 text-white px-6 py-3 rounded-lg font-semibold shadow-md transition-all duration-300 hover:bg-blue-950 hover:shadow-lg"
+              >
+                Learn More About Us
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="donate" class="py-20 bg-blue-50">
+        <div class="container mx-auto px-6">
+          <h2 class="text-3xl font-bold text-center mb-12 text-blue-900">Choose Your Hydration Package</h2>
+          <div class="max-w-2xl mx-auto">
+            <div class="bg-white rounded-lg shadow-lg p-8">
+              <div class="space-y-8">
+                <div class="flex flex-col items-center mb-8">
+                  <div class="text-2xl font-bold text-gray-800 mb-4">
+                    Select Your Water Package
+                  </div>
+                  <div class="flex flex-wrap gap-4 justify-center">
+                    <!-- Gallons -->
+                    <div class="donation-option group cursor-pointer w-[280px] bg-white rounded-lg shadow-md hover:shadow-lg transition-all p-6 border-2 border-transparent hover:border-blue-500" data-amount="200">
+                      <div class="flex items-center justify-between mb-4">
+                        <span class="text-xl font-bold text-blue-600">₹50 per Gallon</span>
+                        <div class="w-8 h-8 flex items-center justify-center">
+                          <i class="ri-water-line text-blue-600 group-hover:hidden"></i>
+                          <i class="ri-water-fill text-blue-600 hidden group-hover:block"></i>
+                        </div>
+                      </div>
+                      <h3 class="font-semibold mb-2">Purified Water Gallon</h3>
+                      <p class="text-sm text-gray-600">Large purified water gallon for home & office use.</p>
+                    </div>
+      
+                    <!-- Wedding Pouches -->
+                    <div class="donation-option group cursor-pointer w-[280px] bg-white rounded-lg shadow-md hover:shadow-lg transition-all p-6 border-2 border-transparent hover:border-blue-500" data-amount="1500">
+                      <div class="flex items-center justify-between mb-4">
+                        <span class="text-xl font-bold text-blue-600">₹1500 per 100 pouches</span>
+                        <div class="w-8 h-8 flex items-center justify-center">
+                          <i class="ri-gift-line text-blue-600 group-hover:hidden"></i>
+                          <i class="ri-gift-fill text-blue-600 hidden group-hover:block"></i>
+                        </div>
+                      </div>
+                      <h3 class="font-semibold mb-2">Wedding Pouches</h3>
+                      <p class="text-sm text-gray-600">Customized water pouches for weddings & events.</p>
+                    </div>
+      
+                    <!-- Bottled Water -->
+                    <div class="donation-option group cursor-pointer w-[280px] bg-white rounded-lg shadow-md hover:shadow-lg transition-all p-6 border-2 border-transparent hover:border-blue-500" data-amount="50">
+                      <div class="flex items-center justify-between mb-4">
+                        <span class="text-xl font-bold text-blue-600">₹50 per bottle</span>
+                        <div class="w-8 h-8 flex items-center justify-center">
+                          <i class="ri-bottle-line text-blue-600 group-hover:hidden"></i>
+                          <i class="ri-bottle-fill text-blue-600 hidden group-hover:block"></i>
+                        </div>
+                      </div>
+                      <h3 class="font-semibold mb-2">Premium Water Bottle</h3>
+                      <p class="text-sm text-gray-600">Pure and fresh bottled water for daily use.</p>
+                    </div>
+                  </div>
+                </div>
+      
+                <div class="max-w-md mx-auto">
+                  <div class="mb-6">
+                    <label class="block text-gray-700 mb-2">Custom Amount (₹)</label>
+                    <div class="relative">
+                      <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">₹</span>
+                      <input type="text" id="customAmount" class="w-full pl-8 pr-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none text-lg" placeholder="Enter your amount"/>
+                    </div>
+                    <div class="text-sm text-gray-500 mt-2">* Minimum order amount is ₹100</div>
+                  </div>
+                  
+                  <button id="generateQR" class="w-full bg-blue-600 text-white py-4 rounded-lg font-semibold hover:bg-blue-800 transition-all mb-2 flex items-center justify-center">
+                    <i class="ri-qr-code-line mr-2"></i> Generate QR Code
+                  </button>
+                  <p class="text-center text-sm text-gray-500">Secure payment powered by UPI</p>
+                </div>
+              </div>
+              <div id="qrCodeContainer" class="hidden">
+                <div class="border-2 border-gray-200 rounded-lg p-6 text-center">
+                  <div id="qrCode" class="w-48 h-48 mx-auto mb-4"></div>
+                  <p class="text-gray-600 mb-4">Scan this QR code to place your order</p>
+                  <button id="saveQR" class="bg-blue-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-all">Save QR Code</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <hr>
+      <section id="purified-water" class="py-20 bg-blue-50">
+        <div class="container mx-auto px-6">
+          <h2 class="text-3xl font-bold text-center mb-4 text-blue-900">Kaushal Neer - Pure & Safe Hydration</h2>
+          <p class="text-black text-center mb-12 max-w-2xl mx-auto text-2xl">
+            Experience the purity of fresh and mineral-enriched water. Perfect for home, offices, events, and special occasions.
+          </p>
+      
+          <div class="grid md:grid-cols-2 gap-4 mb-16">
+            <!-- Water Gallons -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+              <img
+                src="gallon.jpg.webp"
+                class="w-full h-38 object-cover"
+                alt="Water Gallon"
+              />
+              <div class="p-6">
+                <h3 class="text-xl font-bold mb-4">Purified Water Gallons</h3>
+                <p class="text-gray-600 mb-4">
+                  Large, safe, and mineral-rich water gallons for homes and businesses.
+                </p>
+              </div>
+            </div>
+      
+            <!-- Bottled Water -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105">
+              <img
+                src="bottle.jpg.webp"
+                class="w-full h-38 object-cover transition-transform duration-300 hover:scale-110"
+                alt="Bottled Water"
+              />
+              <div class="p-6 transition-colors duration-300 hover:bg-blue-50">
+                <h3 class="text-xl font-bold mb-4 transition-colors duration-300 hover:text-primary">Premium Bottled Water</h3>
+                <p class="text-gray-600 mb-4 transition-colors duration-300 hover:text-gray-800">
+                  Stay hydrated with our convenient, high-quality bottled water.
+                </p>
+              </div>
+            </div>
+            
+      
+          <!-- Customer Testimonials -->
+          <div class="bg-blue-100 rounded-lg shadow-lg p-8">
+            <h3 class="text-xl font-bold text-center mb-8 text-blue-900">Executive Heads</h3>
+            <div class="relative">
+              <div id="testimonialSlider" class="overflow-hidden">
+                <div class="testimonial-slider flex transition-transform duration-500">
+                  <!-- Testimonial 1 -->
+                  <div class="w-full md:w-1/3 flex-shrink-0 px-4">
+                    <div class="text-center">
+                      <div class="mb-4 relative">
+                        <img
+                          src="customer1.jpg"
+                          class="w-24 h-24 rounded-full mx-auto object-cover border-4 border-blue-500"
+                          alt="Customer 1"
+                        />
+                      </div>
+                      <p class="text-gray-600 mb-4">
+                        "Best water for my home and office! The quality and taste are unmatched."
+                      </p>
+                      <h4 class="font-semibold">Dharmendra Gupta</h4>
+                      <p class="text-gray-500">Business Owner</p>
+                    </div>
+                  </div>
+      
+                  <!-- Testimonial 2 -->
+                  <div class="w-full md:w-1/3 flex-shrink-0 px-4">
+                    <div class="text-center">
+                      <div class="mb-4 relative">
+                        <img
+                          src="customer2.jpg"
+                          class="w-24 h-24 rounded-full mx-auto object-cover border-4 border-blue-500"
+                          alt="Customer 2"
+                        />
+                      </div>
+                      <p class="text-gray-600 mb-4">
+                        "We ordered wedding pouches for an event, and they were a hit! Clean and refreshing."
+                      </p>
+                      <h4 class="font-semibold">Sanjeev Kaushal</h4>
+                      <p class="text-gray-500">Manager</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+          <!-- Call to Action -->
+          <div class="mt-16 text-center">
+            <a
+              href="#"
+              class="inline-flex items-center bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-800 transition-all"
+            >
+              Explore More Hydration Options
+              <i class="ri-arrow-right-line ml-2"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+      
+    
+    </main>
+    <footer class="bg-gray-900 text-white py-12">
+      <div class="container mx-auto px-6">
+        <div class="grid md:grid-cols-3 gap-12">
+          <div>
+            <h3 class="text-xl font-semibold mb-6">Quick Links</h3>
+            <ul class="space-y-3">
+              <li><a href="#" class="hover:text-primary">Home</a></li>
+              <li><a href="#about" class="hover:text-primary">About Us</a></li>
+              
+              <li><a href="#contact" class="hover:text-primary">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold mb-6">Newsletter</h3>
+            <p class="text-gray-400 mb-4">
+              Stay updated with our latest news and updates.
+            </p>
+            <form id="newsletterForm" onsubmit="return submitForm(this, 'newsletter.php')" class="space-y-4">
+              <input
+                type="email"
+                class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded focus:border-primary focus:outline-none"
+                placeholder="Enter your email"
+              />
+              <button
+                type="submit"
+                class="bg-primary text-white px-6 py-3 !rounded-button font-semibold hover:bg-opacity-90 transition-all whitespace-nowrap"
+              >
+                Subscribe
+              </button>
+            </form>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold mb-6">Connect With Us</h3>
+            <div class="flex space-x-4">
+              <a
+                href="https://www.facebook.com/profile.php?id=100070520166136"
+                class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-all"
+              >
+                <i class="ri-facebook-fill ri-lg"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-all"
+              >
+                <i class="ri-twitter-fill ri-lg"></i>
+              </a>
+              <a
+                href="https://www.instagram.com/ayusanatni01/"
+                class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-all"
+              >
+                <i class="ri-instagram-fill ri-lg"></i>
+              </a>
+              
+            </div>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center"
+        >
+          <p class="text-gray-400">
+            &copy; KaushalNeer. All rights reserved.
+          </p>
+          <div class="flex space-x-6 mt-4 md:mt-0">
+            <a href="#" class="text-gray-400 hover:text-primary"
+              >Privacy Policy</a
+            >
+            <a href="#" class="text-gray-400 hover:text-primary"
+              >Terms of Service</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+      // Function to show notification
+    // Add this function to your existing script
+function submitForm(form, actionUrl) {
+    // Prevent default form submission
+    event.preventDefault();
+    
+    // Create FormData object from the form
+    const formData = new FormData(form);
+    
+    // Show loading state
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.innerHTML;
+    submitBtn.innerHTML = 'Processing...';
+    submitBtn.disabled = true;
+
+    // Send AJAX request
+    fetch(actionUrl, {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response.json();
+    })
+    .then(data => {
+        if(data.status === 'success') {
+            showToast(data.message, 'success');
+            form.reset();
+        } else {
+            showToast(data.message, 'error');
+        }
+    })
+    .catch(error => {
+        showToast('An error occurred. Please try again.', 'error');
+        console.error('Error:', error);
+    })
+    .finally(() => {
+        // Reset button state
+        submitBtn.innerHTML = originalBtnText;
+        submitBtn.disabled = false;
+    });
+    
+    return false;
+}
+
+// Make sure you have this toast notification function (add if missing)
+function showToast(message, type = "success") {
+    const toast = document.createElement("div");
+    toast.className = `fixed top-4 right-4 px-6 py-3 rounded shadow-lg z-50 ${
+        type === "success" ? "bg-green-500" : "bg-red-500"
+    } text-white transform transition-all duration-300 translate-y-[-100%]`;
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    
+    // Animate in
+    setTimeout(() => {
+        toast.style.transform = "translateY(0)";
+    }, 10);
+    
+    // Remove after 3 seconds
+    setTimeout(() => {
+        toast.style.transform = "translateY(-100%)";
+        setTimeout(() => toast.remove(), 300);
+    }, 3000);
+}
+      document.addEventListener("DOMContentLoaded", function () {
+        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+        const amountBtns = document.querySelectorAll(".amount-btn");
+        const customAmount = document.getElementById("customAmount");
+        const generateQRBtn = document.getElementById("generateQR");
+        const qrCodeContainer = document.getElementById("qrCodeContainer");
+        const qrCodeElement = document.getElementById("qrCode");
+        const saveQRBtn = document.getElementById("saveQR");
+        const contactForm = document.getElementById("contactForm");
+        const newsletterForm = document.getElementById("newsletterForm");
+        const testimonialSlider = document.getElementById("testimonialSlider");
+        const prevSlideBtn = document.getElementById("prevSlide");
+        const nextSlideBtn = document.getElementById("nextSlide");
+        let currentSlide = 0;
+        const totalSlides = 3;
+        let qrCode = null;
+        // Add click event listeners to all buttons
+        document.querySelectorAll("button").forEach((button) => {
+          button.addEventListener("click", function (e) {
+            // Add ripple effect
+            const ripple = document.createElement("div");
+            ripple.classList.add("ripple");
+            this.appendChild(ripple);
+            // Get button position
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            ripple.style.left = x + "px";
+            ripple.style.top = y + "px";
+            // Remove ripple after animation
+            setTimeout(() => ripple.remove(), 600);
+            // Add active state
+            this.classList.add("active");
+            setTimeout(() => this.classList.remove("active"), 200);
+          });
+        });
+        // Add hover effect to all buttons
+        document.querySelectorAll("button").forEach((button) => {
+          button.addEventListener("mouseenter", function () {
+            this.style.transform = "scale(1.05)";
+            this.style.transition = "transform 0.2s ease";
+          });
+          button.addEventListener("mouseleave", function () {
+            this.style.transform = "scale(1)";
+          });
+        });
+        mobileMenuBtn.addEventListener("click", () => {
+          mobileMenu.classList.toggle("hidden");
+        });
+        // Handle donation option selection
+        document.querySelectorAll(".donation-option").forEach((option) => {
+          option.addEventListener("click", () => {
+            // Remove selected state from all options
+            document.querySelectorAll(".donation-option").forEach((opt) => {
+              opt.classList.remove("border-primary");
+            });
+            // Add selected state to clicked option
+            option.classList.add("border-primary");
+            // Update custom amount input
+            customAmount.value = option.dataset.amount;
+            // Smooth scroll to custom amount section
+            customAmount.scrollIntoView({ behavior: "smooth", block: "center" });
+          });
+        });
+        // Handle frequency selection
+        document.querySelectorAll(".frequency-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            // Remove selected state from all frequency buttons
+            document.querySelectorAll(".frequency-btn").forEach((b) => {
+              b.classList.remove("border-primary", "text-primary");
+            });
+            // Add selected state to clicked button
+            btn.classList.add("border-primary", "text-primary");
+          });
+        });
+        // Validate custom amount input
+        customAmount.addEventListener("input", (e) => {
+  // Get raw numeric value
+  let value = e.target.value.replace(/[^0-9]/g, "");
+  
+  if (value) {
+    const numericValue = parseInt(value);
+    
+    // Update validation
+    if (numericValue < 100) {
+      showToast("Minimum donation amount is ₹100", "error");
+      generateQRBtn.disabled = true;
+      generateQRBtn.classList.add("opacity-50");
+    } else {
+      generateQRBtn.disabled = false;
+      generateQRBtn.classList.remove("opacity-50");
+    }
+    
+    // Format display value
+    e.target.value = "₹" + numericValue.toLocaleString("en-IN");
+  } else {
+    e.target.value = "";
+  }
+});
+        generateQRBtn.addEventListener("click", () => {
+  // Get raw number value without currency symbol
+  const rawValue = customAmount.value.replace(/[^0-9]/g, "");
+  const amount = parseInt(rawValue);
+
+  if (!amount || amount < 100) {
+    showToast("Minimum donation amount is ₹100", "error");
+    return;
+  }
+
+  qrCodeContainer.classList.remove("hidden");
+  qrCodeElement.innerHTML = "";
+  qrCode = new QRCode(qrCodeElement, {
+    text: `upi://pay?pa=8294881973@ibl&pn=Hope Foundation&am=${amount}&cu=INR`,
+    width: 192,
+    height: 192,
+  });
+});
+        saveQRBtn.addEventListener("click", () => {
+          if (!qrCode) return;
+          const canvas = qrCodeElement.querySelector("canvas");
+          const image = canvas.toDataURL("image/png");
+          const link = document.createElement("a");
+          link.href = image;
+          link.download = "donation-qr.png";
+          link.click();
+        });
+        function showNotification(message, type = "success") {
+          showToast(message, type);
+        }
+        contactForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          showNotification("Message sent successfully!");
+          contactForm.reset();
+        });
+        newsletterForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          showNotification("Successfully subscribed to newsletter!");
+          newsletterForm.reset();
+        });
+        function updateSlider() {
+          const offset = -currentSlide * 100;
+          testimonialSlider.querySelector(".testimonial-slider").style.transform =
+            `translateX(${offset}%)`;
+        }
+        prevSlideBtn.addEventListener("click", () => {
+          currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+          updateSlider();
+        });
+        nextSlideBtn.addEventListener("click", () => {
+          currentSlide = (currentSlide + 1) % totalSlides;
+          updateSlider();
+        });
+        // Remove auto slide
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute("href"));
+            if (target) {
+              window.scrollTo({
+                top: target.offsetTop - 64,
+                behavior: "smooth",
+              });
+              if (mobileMenu.classList.contains("block")) {
+                mobileMenu.classList.remove("block");
+              }
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
